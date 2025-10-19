@@ -1,5 +1,7 @@
 # Project Tasks
 
+> **Note:** When starting a new task, create a new branch first. See [development-workflow.md](development-workflow.md) for details.
+
 ## Development Phase
 1. [ ] Set up project structure and initialize React + Express applications
 2. [ ] Configure development environment (Docker PostgreSQL, environment variables)
