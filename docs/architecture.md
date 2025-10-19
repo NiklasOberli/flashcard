@@ -70,7 +70,10 @@ React Frontend ←→ Node.js/Express API ←→ PostgreSQL Database
 ## File Structure
 
 ```
-flashcard-app/
+flashcard/
+├── .github/
+│   └── instructions/
+│       └── instructions.instructions.md
 ├── frontend/                 # React application
 │   ├── src/
 │   │   ├── components/       # React components
@@ -90,7 +93,12 @@ flashcard-app/
 │   ├── prisma/              # Prisma schema & migrations
 │   └── package.json
 ├── docs/                     # Documentation
-│   └── ui-design.md         # UI/UX specifications
-├── docker-compose.yml        # Local PostgreSQL
+│   ├── api-endpoints.md
+│   ├── architecture.md
+│   ├── database-schema.md
+│   ├── deployment.md
+│   └── development-guide.md
+├── docker-compose.yml        # Local PostgreSQL (planned)
+├── .gitignore
 └── README.md
 ```
