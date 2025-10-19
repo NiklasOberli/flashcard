@@ -186,6 +186,21 @@ Dockerfile.prod
 # Vercel
 .vercel
 
+# PWA / Service Workers
+workbox-*.js
+sw.js
+service-worker.js
+precache-manifest.*.js
+workbox-precache-manifest.*.js
+
+# Testing
+test-results/
+playwright-report/
+playwright/.cache/
+.jest-cache/
+jest-coverage/
+vitest-coverage/
+
 # Local development
 .env.local
 .env.development.local
