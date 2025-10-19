@@ -9,3 +9,8 @@ applyTo: '**'
 2. Read relevant documentation in the docs/ folder if necessary
 3. Understand the existing architecture and patterns before coding
 
+✅ Task Management:
+- Only work on ONE task from [project-tasks.md](../../docs/project-tasks.md) at a time
+- Cross off completed tasks immediately after finishing them
+- Never start multiple tasks simultaneously
+
