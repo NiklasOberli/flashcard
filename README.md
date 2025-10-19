@@ -16,8 +16,8 @@ A simple, user-friendly web application for creating and studying flashcards wit
 - **[Database Schema](./docs/database-schema.md)** - Database design and entity relationships
 - **[API Endpoints](./docs/api-endpoints.md)** - API endpoint specifications
 - **[Deployment](./docs/deployment.md)** - Hosting, security, scalability, and cost considerations
-- **[Development Guide](./docs/development-guide.md)** - Development workflow and next steps
+- **[Project Tasks](./docs/project-tasks.md)** - Project task checklist and roadmap
 
 ## Getting Started
 
-For detailed development instructions, see the [Development Guide](./docs/development-guide.md).
+For the project task checklist, see [Project Tasks](./docs/project-tasks.md).
