@@ -97,7 +97,8 @@ flashcard/
 │   ├── architecture.md
 │   ├── database-schema.md
 │   ├── deployment.md
-│   └── development-guide.md
+│   ├── development-guide.md
+│   └── project-task.md
 ├── docker-compose.yml        # Local PostgreSQL (planned)
 ├── .gitignore
 └── README.md
