@@ -21,4 +21,50 @@ A simple, user-friendly web application for creating and studying flashcards wit
 
 ## Getting Started
 
+### Prerequisites
+- Node.js (v18 or higher)
+- Docker and Docker Compose
+- Git
+
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd flashcard
+   ```
+
+2. **Start the PostgreSQL database**
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Set up the backend**
+   ```bash
+   cd backend
+   cp .env.example .env
+   npm install
+   npm run dev
+   ```
+
+4. **Set up the frontend** (in a new terminal)
+   ```bash
+   cd frontend
+   cp .env.example .env
+   npm install
+   npm run dev
+   ```
+
+5. **Access the application**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3001
+
+### Stopping the Development Environment
+
+- Stop the frontend/backend: `Ctrl+C` in their respective terminals
+- Stop the database: `docker-compose down`
+- Stop and remove database data: `docker-compose down -v`
+
+For detailed setup instructions, see the README files in the `frontend/` and `backend/` directories.
+
 For the project task checklist, see [Project Tasks](./docs/project-tasks.md).

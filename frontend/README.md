@@ -1,53 +1,54 @@
-# React + TypeScript + Vite
+# Frontend - Flashcard Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite web application for creating and studying flashcards.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- Chakra UI
+- React Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## React Compiler
+### Prerequisites
+- Node.js (v18 or higher)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### Installation Steps
 
-## Expanding the ESLint configuration
+1. **Configure Environment Variables**
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+   ```
+   The default values in `.env.example` point to the local backend server.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. **Run in Development Mode**
+   ```bash
+   npm run dev
+   ```
+   The application will start on `http://localhost:5173`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Environment Variables
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `VITE_API_URL` - Backend API URL (default: http://localhost:3001)
+- `VITE_APP_NAME` - Application name
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+
+## Development
+
+Make sure the backend server is running before starting the frontend development server.
 import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([

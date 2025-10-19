@@ -4,7 +4,7 @@
 
 ## Development Phase
 1. [x] Set up project structure and initialize React + Express applications
-2. [ ] Configure development environment (Docker PostgreSQL, environment variables)
+2. [x] Configure development environment (Docker PostgreSQL, environment variables)
 3. [ ] Set up Prisma ORM and create database schema
 4. [ ] Implement authentication system (registration, login, JWT)
 5. [ ] Build core API endpoints for folders and flashcards CRUD
