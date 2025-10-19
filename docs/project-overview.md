@@ -2,7 +2,7 @@
 
 ## System Requirements Summary
 
-- Web-only application (no mobile clients)
+- Web-only application (no mobile clients, only PWA)
 - User authentication (email + password)
 - Multi-user support (~10 users)
 - User-specific flashcard collections
@@ -32,9 +32,12 @@ React Frontend ←→ Node.js/Express API ←→ PostgreSQL Database
   - Session management
 - **Design Requirements**:
   - **Mobile-first responsive design** (phone → tablet → desktop)
-  - Modern dark/light mode support
-  - Smooth animations and transitions
-  - Touch-friendly interface elements
+  - Clean, minimalist interface
+  - Smooth, delightful animations
+  - Dark/light mode support
+  - Touch-friendly interactions
+  - Fast, responsive performance
+  - **Progressive Web App (PWA)** capabilities for installability and offline support
 
 #### Backend API (Server-Side)
 - **Purpose**: Business logic and data management
@@ -60,8 +63,9 @@ React Frontend ←→ Node.js/Express API ←→ PostgreSQL Database
 - **Backend**: Node.js with Express.js
 - **Database**: PostgreSQL with Prisma ORM
 - **Authentication**: JWT tokens + bcrypt for password hashing
-- **UI Framework**: Tailwind CSS for responsive, modern styling
-- **Animations**: Framer Motion for smooth interactions
+- **UI Framework**: Chakra UI for accessible, responsive component library
+- **Animations**: Built-in Chakra UI animations + Framer Motion for advanced interactions
+- **PWA**: Service workers, manifest.json, and offline capabilities
 
 ## Database Schema Design
 
@@ -121,14 +125,14 @@ Flashcards
 
 ## Hosting Recommendation
 
-### Vercel + PlanetScale
+### Vercel + Vercel Postgres
 - **Frontend**: Vercel (automatic deployments from Git)
 - **Backend**: Vercel Serverless Functions
-- **Database**: PlanetScale (MySQL with branching)
-- **Pros**: Easy setup, generous free tier, integrated CI/CD
+- **Database**: Vercel Postgres (PostgreSQL with serverless connections)
+- **Pros**: Easy setup, generous free tier, integrated CI/CD, consistent PostgreSQL everywhere
 - **Cons**: Vendor lock-in
 
-> **Note**: While we're using PostgreSQL for local development, PlanetScale uses MySQL but provides excellent developer experience. Alternatively, you can use Railway or Render for PostgreSQL hosting.
+> **Alternative**: Railway or Render for full-stack PostgreSQL hosting with more control and flexibility.
 
 ## Security Considerations
 
@@ -176,7 +180,8 @@ Flashcards
 ## Cost Estimation (Monthly)
 
 ### Small Scale (10 users)
-- **Vercel + PlanetScale**: $0-20/month (recommended)
+- **Vercel + Vercel Postgres**: $0-20/month (free tier available)
+- **Alternative (Railway/Render)**: $5-15/month
 
 ## Next Steps
 
@@ -189,13 +194,14 @@ Flashcards
 4. **Implement authentication system** (registration, login, JWT)
 5. **Build core API endpoints** for folders and flashcards CRUD
 6. **Develop React components** for authentication and main interface
-7. **Add error handling and input validation**
-8. **Write basic tests** for critical functionality
+7. **Configure PWA** (service worker, manifest.json, offline support)
+8. **Add error handling and input validation**
+9. **Write basic tests** for critical functionality
 
 ### Deployment Phase
 9. **Set up Vercel account** and connect GitHub repository
-10. **Configure PlanetScale database** and run migrations
-11. **Deploy and test** the application
+10. **Configure Vercel Postgres database** and run migrations
+11. **Deploy and test** the application (including PWA installation)
 12. **Invite test users** and gather feedback
 
 ## File Structure
