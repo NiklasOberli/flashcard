@@ -72,34 +72,41 @@ React Frontend ←→ Node.js/Express API ←→ PostgreSQL Database
 ```
 flashcard/
 ├── .github/
-│   └── instructions/
-│       └── instructions.instructions.md
-├── frontend/                 # React application
+│   └── instructions/        # Development instructions
+│       └── ...
+├── frontend/                # React application
 │   ├── src/
-│   │   ├── components/       # React components
+│   │   ├── components/      # React components
 │   │   ├── pages/           # Page components
 │   │   ├── hooks/           # Custom React hooks
 │   │   ├── services/        # API calls
 │   │   ├── styles/          # Global styles & themes
-│   │   └── types/           # TypeScript types
-│   ├── public/
+│   │   ├── types/           # TypeScript types
+│   │   └── ...
+│   ├── public/              # Static assets
 │   └── package.json
-├── backend/                  # Express API server
+├── backend/                 # Express API server
 │   ├── src/
 │   │   ├── routes/          # API routes
 │   │   ├── middleware/      # Auth & validation
-│   │   ├── models/          # Database models
-│   │   └── utils/           # Helper functions
+│   │   ├── utils/           # Helper functions
+│   │   └── ...
 │   ├── prisma/              # Prisma schema & migrations
+│   │   └── ...
 │   └── package.json
-├── docs/                     # Documentation
+├── docs/                    # Project documentation
+│   ├── authentication.md
+│   ├── backend-setup.md
+│   ├── frontend-setup.md
+│   ├── testing.md
 │   ├── api-endpoints.md
 │   ├── architecture.md
 │   ├── database-schema.md
 │   ├── deployment.md
-│   ├── development-guide.md
-│   └── project-task.md
-├── docker-compose.yml        # Local PostgreSQL (planned)
+│   ├── development-workflow.md
+│   └── project-tasks.md
+├── docker-compose.yml       # Local PostgreSQL
+├── test-auth.ps1            # Authentication test suite
 ├── .gitignore
 └── README.md
 ```

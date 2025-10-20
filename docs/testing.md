@@ -3,13 +3,14 @@
 ## Quick Start
 
 ### Prerequisites
-1. Database must be running:
+
+1. **Database must be running:**
    ```powershell
    docker ps  # Check if PostgreSQL container is running
    # If not: docker-compose up -d
    ```
 
-2. Backend server must be running:
+2. **Backend server must be running:**
    ```powershell
    cd backend
    npm run dev
@@ -21,7 +22,7 @@
 .\test-auth.ps1
 ```
 
-This will run all authentication tests and show you exactly what passed or failed.
+This runs all authentication tests and displays results.
 
 **Expected output:**
 ```
@@ -50,6 +51,8 @@ Expected: 201 Created - User registered successfully
 
 ## What Gets Tested
 
+The test suite covers:
+
 1. **Server Health** - Verifies backend is running
 2. **User Registration** - Creates user with valid credentials
 3. **Duplicate Email** - Rejects duplicate registrations (409)
@@ -59,22 +62,21 @@ Expected: 201 Created - User registered successfully
 7. **Invalid Credentials** - Rejects wrong password (401)
 8. **Forgot Password** - Password reset request works (200)
 
-## Manual Testing (Advanced)
+## Manual Testing
 
-For testing features that require email verification tokens:
+For features requiring email verification tokens:
 
-### 1. View Database Records
+### 1. Open Prisma Studio
 ```powershell
 cd backend
 npm run db:studio
 ```
-Opens Prisma Studio at http://localhost:5555
+Access at http://localhost:5555
 
-### 2. Get Verification Token
-- Open Prisma Studio
-- Click on "User" model
+### 2. Get Tokens
+- Click "User" model
 - Find your test user
-- Copy the `verificationToken` value
+- Copy `verificationToken` or `resetToken` for testing
 
 ### 3. Test Email Verification
 ```powershell
@@ -84,43 +86,63 @@ Invoke-RestMethod -Uri "http://localhost:3001/api/auth/verify-email?token=$token
 
 ### 4. Test Login After Verification
 ```powershell
-$body = @{ email = "test1234@example.com"; password = "TestPass123" } | ConvertTo-Json
+$body = @{ email = "test@example.com"; password = "TestPass123" } | ConvertTo-Json
 $response = Invoke-RestMethod -Uri "http://localhost:3001/api/auth/login" `
     -Method Post -ContentType "application/json" -Body $body
-Write-Host "Token: $($response.token)"
+Write-Host "JWT Token: $($response.token)"
 ```
 
 ### 5. Test Protected Routes
 ```powershell
-$token = "YOUR_JWT_TOKEN_HERE"
+$token = "YOUR_JWT_TOKEN"
 Invoke-RestMethod -Uri "http://localhost:3001/api/protected-route" `
     -Headers @{ Authorization = "Bearer $token" }
 ```
 
-## Password Requirements
+## Testing Tools
 
-Passwords must have:
-- ✅ Minimum 8 characters
-- ✅ At least one uppercase letter (A-Z)
-- ✅ At least one lowercase letter (a-z)
-- ✅ At least one number (0-9)
+### PowerShell (Built-in)
+Use `Invoke-RestMethod` for quick API tests (see examples above).
 
-Examples:
-- ✅ `TestPass123` - Valid
-- ✅ `MySecureP4ss` - Valid
-- ❌ `short` - Too short
-- ❌ `nouppercase123` - No uppercase
-- ❌ `NOLOWERCASE123` - No lowercase
-- ❌ `NoNumbers` - No number
+### Postman
+1. Import collection or create requests manually
+2. Use environment variables for base URL and tokens
+3. Chain requests (register → verify → login)
+
+### VS Code REST Client Extension
+1. Install "REST Client" extension
+2. Create `.http` or `.rest` files with requests
+3. Click "Send Request" above each request
+
+Example `test.http`:
+```http
+### Register User
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "TestPass123"
+}
+
+### Login
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "TestPass123"
+}
+```
 
 ## Troubleshooting
 
 ### Server not responding
 ```powershell
-# Check if backend is running
+# Check if backend is running on port 3001
 Test-NetConnection -ComputerName localhost -Port 3001 -InformationLevel Quiet
 
-# If False, start the backend
+# Start backend if needed
 cd backend
 npm run dev
 ```
@@ -133,65 +155,38 @@ docker ps
 # Start database
 docker-compose up -d
 
-# Check database logs
+# View logs
 docker-compose logs -f
 ```
 
 ### Tests failing after changes
-1. Check `get_errors` in VS Code for TypeScript errors
+1. Check for TypeScript errors in VS Code Problems panel
 2. Review backend console for runtime errors
-3. Verify `.env` file has correct `DATABASE_URL` and `JWT_SECRET`
-4. Run Prisma migrations: `cd backend ; npx prisma migrate dev`
+3. Verify `.env` has `DATABASE_URL` and `JWT_SECRET`
+4. Regenerate Prisma client: `cd backend ; npm run db:generate`
 
-## API Endpoints Reference
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/verify-email?token=XXX` - Verify email
-- `POST /api/auth/resend-verification` - Resend verification email
-- `POST /api/auth/forgot-password` - Request password reset
-- `POST /api/auth/reset-password` - Reset password with token
-
-### Request Examples
-
-**Register:**
-```json
-POST /api/auth/register
-{
-  "email": "user@example.com",
-  "password": "TestPass123"
-}
+### Prisma client issues
+```powershell
+cd backend
+npm run db:generate
+npm run db:push
 ```
 
-**Login:**
-```json
-POST /api/auth/login
-{
-  "email": "user@example.com",
-  "password": "TestPass123"
-}
+### Port already in use
+```powershell
+# Kill all Node processes
+Get-Process -Name node | Stop-Process -Force
 ```
 
-**Response:**
-```json
-{
-  "message": "Login successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "userId": "550e8400-e29b-41d4-a716-446655440000"
-}
-```
+## Documentation References
 
-## Files
+- **[Authentication Guide](./authentication.md)** - Complete authentication system documentation
+- **[API Endpoints](./api-endpoints.md)** - Full API reference
+- **[Backend Setup](./backend-setup.md)** - Backend configuration and setup
+- **[Database Schema](./database-schema.md)** - Database structure and models
 
-- `test-auth.ps1` - Main test suite (run this!)
-- `backend/AUTHENTICATION_README.md` - Implementation details
-- `backend/src/routes/auth.ts` - Auth endpoints source code
+## Test Files
+
+- `test-auth.ps1` - Automated authentication test suite (project root)
+- `backend/src/routes/auth.ts` - Authentication endpoints source code
 - `backend/prisma/schema.prisma` - Database schema
-
-## Need Help?
-
-1. Check the backend console for errors
-2. Review `backend/AUTHENTICATION_README.md` for implementation details
-3. Use Prisma Studio to inspect database state
-4. Check email preview URLs in backend console (for Ethereal email testing)
