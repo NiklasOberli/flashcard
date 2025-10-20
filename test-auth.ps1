@@ -119,5 +119,5 @@ Write-Host "Test Email: $testEmail" -ForegroundColor Cyan
 if ($script:userId) { Write-Host "User ID: $script:userId" -ForegroundColor Cyan }
 Write-Host "`nNext Steps:" -ForegroundColor Yellow
 Write-Host "  - View database: cd backend ; npm run db:studio" -ForegroundColor White
-Write-Host "  - See TESTING.md for manual tests`n" -ForegroundColor White
+Write-Host "  - See docs/testing.md for manual tests`n" -ForegroundColor White
 if ($script:FailedTests -gt 0) { exit 1 } else { exit 0 }

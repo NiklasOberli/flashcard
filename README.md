@@ -12,7 +12,7 @@ A simple, user-friendly web application for creating and studying flashcards wit
 
 ## Documentation
 
-- **[Testing Guide](./TESTING.md)** - How to run tests and verify functionality
+- **[Testing Guide](./docs/testing.md)** - How to run tests and verify functionality
 - **[Architecture](./docs/architecture.md)** - System architecture, technology stack, and file structure
 - **[Database Schema](./docs/database-schema.md)** - Database design and entity relationships
 - **[API Endpoints](./docs/api-endpoints.md)** - API endpoint specifications
