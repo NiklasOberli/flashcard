@@ -8,6 +8,7 @@ applyTo: '**'
 1. Always read the README.md file first
 2. Read relevant documentation in the docs/ folder if necessary
 3. Understand the existing architecture and patterns before coding
+4. Don't just add new files without considering existing structure, add to existing files when possible
 
 ✅ Task Management:
 - Only work on ONE task from [project-tasks.md](../../docs/project-tasks.md) at a time
