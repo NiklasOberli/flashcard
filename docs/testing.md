@@ -64,48 +64,6 @@ This comprehensive test suite:
 .\test-api.ps1 -Verbose    # Show expected results for each test
 ```
 
-**Expected output:**
-```
-======================================================================
-  FLASHCARD API TEST SUITE
-======================================================================
-
-Checking PostgreSQL database...
-[SUCCESS] Database is running
-
-[SUCCESS] Server is already running
-
-Test Email: apitest1234@example.com
-
---- AUTHENTICATION SETUP ---
-
-Test: Register Test User
-[PASS] User registered successfully
-
-Test: Verify User in Database
-[PASS] User verified in database
-
-Test: Login Test User
-[PASS] Logged in successfully
-
---- FOLDERS API TESTS ---
-
-Test: Create Folder
-[PASS] Folder created: Learning (ID: xyz123)
-
-... (all tests)
-
-======================================================================
-  TEST SUMMARY
-======================================================================
-Total Tests: 18
-Passed: 18
-Failed: 0
-======================================================================
-
-✓ ALL TESTS PASSED!
-```
-
 ## What Gets Tested
 
 ### Authentication Tests (`test-auth.ps1`)
