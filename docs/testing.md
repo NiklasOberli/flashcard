@@ -10,14 +10,11 @@
    # If not: docker-compose up -d
    ```
 
-2. **Backend server must be running:**
-   ```powershell
-   cd backend
-   npm run dev
-   ```
+2. **Backend server** (automatically started by test scripts if not running)
 
 ### Run Automated Tests
 
+#### Authentication Tests
 ```powershell
 .\test-auth.ps1
 ```
@@ -49,9 +46,69 @@ Expected: 201 Created - User registered successfully
 ✅ ALL TESTS PASSED! (8/8)
 ```
 
+#### Folders & Flashcards API Tests
+```powershell
+.\test-api.ps1
+```
+
+This comprehensive test suite:
+- Automatically checks if the server is running and starts it if needed
+- Tests all folder CRUD operations
+- Tests all flashcard CRUD operations (create, read, update, delete, move)
+- Tests authorization and validation
+- Cleans up test data after completion
+- Auto-stops the server if it was started by the script
+
+**Options:**
+```powershell
+.\test-api.ps1 -Verbose    # Show expected results for each test
+```
+
+**Expected output:**
+```
+======================================================================
+  FLASHCARD API TEST SUITE
+======================================================================
+
+Checking PostgreSQL database...
+[SUCCESS] Database is running
+
+[SUCCESS] Server is already running
+
+Test Email: apitest1234@example.com
+
+--- AUTHENTICATION SETUP ---
+
+Test: Register Test User
+[PASS] User registered successfully
+
+Test: Verify User in Database
+[PASS] User verified in database
+
+Test: Login Test User
+[PASS] Logged in successfully
+
+--- FOLDERS API TESTS ---
+
+Test: Create Folder
+[PASS] Folder created: Learning (ID: xyz123)
+
+... (all tests)
+
+======================================================================
+  TEST SUMMARY
+======================================================================
+Total Tests: 18
+Passed: 18
+Failed: 0
+======================================================================
+
+✓ ALL TESTS PASSED!
+```
+
 ## What Gets Tested
 
-The test suite covers:
+### Authentication Tests (`test-auth.ps1`)
 
 1. **Server Health** - Verifies backend is running
 2. **User Registration** - Creates user with valid credentials
@@ -61,6 +118,36 @@ The test suite covers:
 6. **Unverified Login** - Blocks login before email verification (403)
 7. **Invalid Credentials** - Rejects wrong password (401)
 8. **Forgot Password** - Password reset request works (200)
+
+### Folders & Flashcards API Tests (`test-api.ps1`)
+
+**Setup Tests:**
+1. **Register Test User** - Creates a new test user
+2. **Verify User in Database** - Auto-verifies email via database
+3. **Login Test User** - Gets JWT token for authenticated requests
+
+**Folder Tests:**
+4. **Create Folder** - Creates a new folder
+5. **Get All Folders** - Retrieves all user folders
+6. **Update Folder** - Updates folder name
+7. **Create Folder - Invalid Name** - Validates empty name rejection (400)
+
+**Flashcard Tests:**
+8. **Create Flashcard** - Creates flashcard in folder
+9. **Get All Flashcards** - Retrieves all user flashcards
+10. **Get Flashcards by Folder** - Filters flashcards by folder ID
+11. **Update Flashcard** - Updates flashcard content
+12. **Create Second Folder** - Creates another folder for move test
+13. **Move Flashcard** - Moves flashcard between folders
+14. **Create Flashcard - Missing Fields** - Validates required fields (400)
+
+**Cleanup Tests:**
+15. **Delete Flashcard** - Removes flashcard
+16. **Delete First Folder** - Removes first folder
+17. **Delete Second Folder** - Removes second folder
+
+**Authorization Tests:**
+18. **Unauthorized Access** - Verifies token requirement (401)
 
 ## Manual Testing
 
@@ -188,5 +275,8 @@ Get-Process -Name node | Stop-Process -Force
 ## Test Files
 
 - `test-auth.ps1` - Automated authentication test suite (project root)
+- `test-api.ps1` - Comprehensive folders & flashcards API test suite (project root)
 - `backend/src/routes/auth.ts` - Authentication endpoints source code
+- `backend/src/routes/folders.ts` - Folders API endpoints source code
+- `backend/src/routes/flashcards.ts` - Flashcards API endpoints source code
 - `backend/prisma/schema.prisma` - Database schema
