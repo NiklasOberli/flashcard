@@ -217,6 +217,12 @@ npm run db:generate
 npm run db:push
 ```
 
+### Clear/Reset Database
+```powershell
+# Reset database (deletes all data and re-runs migrations)
+cd backend ; npx prisma migrate reset
+```
+
 ### Port already in use
 ```powershell
 # Kill all Node processes

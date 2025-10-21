@@ -7,7 +7,7 @@
 2. [x] Configure development environment (Docker PostgreSQL, environment variables)
 3. [x] Set up Prisma ORM and create database schema
 4. [x] Implement authentication system (registration, login, JWT)
-5. [ ] Build core API endpoints for folders and flashcards CRUD
+5. [x] Build core API endpoints for folders and flashcards CRUD
 6. [ ] Develop React components for authentication and main interface
 7. [ ] Configure PWA (service worker, manifest.json, offline support)
 8. [ ] Add error handling and input validation

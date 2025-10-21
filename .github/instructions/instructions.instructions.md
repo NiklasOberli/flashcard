@@ -15,3 +15,9 @@ applyTo: '**'
 - Cross off completed tasks immediately after finishing them
 - Never start multiple tasks simultaneously
 
+⚠️ Testing & Development:
+- The backend server MUST run in a separate terminal window
+- NEVER run the server and test scripts in the same terminal
+- Running a test script in the same window where the server is running will kill the server process
+- Always open a new terminal tab/window for test scripts
+
