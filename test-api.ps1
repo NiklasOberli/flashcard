@@ -274,7 +274,7 @@ Test-Endpoint -Name "Delete Flashcard" -ExpectedResult "200 OK" -TestScript {
 Test-Endpoint -Name "Delete First Folder" -ExpectedResult "200 OK" -TestScript {
     try {
         $headers = @{ Authorization = "Bearer $script:token" }
-        Invoke-RestMethod -Uri "http://localhost:3001/api/flashcards/$script:folderId" `
+        Invoke-RestMethod -Uri "http://localhost:3001/api/folders/$script:folderId" `
             -Method Delete -Headers $headers -ErrorAction Stop
         return @{ Success = $true; Message = "First folder deleted successfully" }
     } catch {
